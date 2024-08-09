@@ -6,12 +6,14 @@ import { useRouter } from 'next/router'
 
 // ** Axios
 import axios from 'axios'
+import { $api } from 'src/configs/axios'
 
 // ** Config
 import authConfig from 'src/configs/auth'
 
 // ** Types
 import { AuthValuesType, LoginParams, ErrCallbackType, UserDataType } from './types'
+import { HOME_ROUTE } from 'src/utils/constants'
 
 // ** Defaults
 const defaultProvider: AuthValuesType = {
@@ -72,8 +74,8 @@ const AuthProvider = ({ children }: Props) => {
   }, [])
 
   const handleLogin = (params: LoginParams, errorCallback?: ErrCallbackType) => {
-    axios
-      .post(authConfig.loginEndpoint, params)
+    $api
+      .post("admins", params)
       .then(async response => {
         params.rememberMe
           ? window.localStorage.setItem(authConfig.storageTokenKeyName, response.data.accessToken)
@@ -83,7 +85,7 @@ const AuthProvider = ({ children }: Props) => {
         setUser({ ...response.data.userData })
         params.rememberMe ? window.localStorage.setItem('userData', JSON.stringify(response.data.userData)) : null
 
-        const redirectURL = returnUrl && returnUrl !== '/' ? returnUrl : '/'
+        const redirectURL = returnUrl && !!returnUrl ? returnUrl : HOME_ROUTE
 
         router.replace(redirectURL as string)
       })

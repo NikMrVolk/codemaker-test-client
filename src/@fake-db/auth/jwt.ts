@@ -12,7 +12,7 @@ import { UserDataType } from 'src/context/types'
 
 const users: UserDataType[] = [
   {
-    id: 1,
+    id: 2,
     role: 'admin',
     password: 'admin',
     fullName: 'John Doe',
@@ -20,7 +20,7 @@ const users: UserDataType[] = [
     email: 'admin@vuexy.com'
   },
   {
-    id: 2,
+    id: 1,
     role: 'client',
     password: 'client',
     fullName: 'Jane Doe',

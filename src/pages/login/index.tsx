@@ -81,13 +81,13 @@ const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(({ t
 }))
 
 const schema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().min(5).required()
+  email: yup.string().min(5).required(),
+  password: yup.string().min(5).required(),
 })
 
 const defaultValues = {
-  password: 'admin',
-  email: 'admin@vuexy.com'
+  password: '111111',
+  email: 'admin1'
 }
 
 interface FormData {
